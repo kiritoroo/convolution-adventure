@@ -19,7 +19,7 @@ export const KernelMenu = () => {
       count: 5,
       color: '#EDE6FD',
       icon: <BiFilterAlt size={25} color='#A882FA'/>,
-      kernelList: [
+      kernel3x3List: [
         {
           name: 'Gaussian',
           size: 3,
@@ -31,6 +31,17 @@ export const KernelMenu = () => {
         },
         {
           name: 'Gaussian',
+          size: 3,
+          matrix: [
+            [1,2,1],
+            [2,4,2],
+            [1,2,1]],
+          coef: 1/16
+        }
+      ],
+      kernel5x5List: [
+        {
+          name: 'Gaussian',
           size: 5,
           matrix: [
             [1,4,7,4,1],
@@ -40,6 +51,36 @@ export const KernelMenu = () => {
             [1,4,7,4,1]
           ],
           coef: 1/273
+        }
+      ],
+      kernel7x7List: [
+        {
+          name: 'Gaussian',
+          size: 7,
+          matrix: [
+            [0,0,1,2,1,0,0],
+            [0,3,13,22,13,3,0],
+            [1,13,59,97,59,13,1],
+            [2,22,97,159,97,22,2],
+            [1,13,59,97,59,13,1],
+            [0,3,13,22,13,3,0],
+            [0,0,1,2,1,0,0]
+          ],
+          coef: 1/1003
+        },
+        {
+          name: 'Gaussian',
+          size: 7,
+          matrix: [
+            [0,0,1,2,1,0,0],
+            [0,3,13,22,13,3,0],
+            [1,13,59,97,59,13,1],
+            [2,22,97,159,97,22,2],
+            [1,13,59,97,59,13,1],
+            [0,3,13,22,13,3,0],
+            [0,0,1,2,1,0,0]
+          ],
+          coef: 1/1003
         },
         {
           name: 'Gaussian',
@@ -63,7 +104,19 @@ export const KernelMenu = () => {
       count: 5,
       color: '#EDE6FD',
       icon: <BiSun size={25} color='#A882FA'/>,
-      kernelList: null
+      kernel3x3List: [
+        {
+          name: 'Sobel Horizontal',
+          size: 3,
+          matrix: [
+            [1,2,1],
+            [2,4,2],
+            [1,2,1]],
+          coef: 1/16
+        }
+      ],
+      kernel5x5List: null,
+      kernel7x7List: null
     },
     {
       id: 'edge',
@@ -71,7 +124,9 @@ export const KernelMenu = () => {
       count: 10,
       color: '#EDE6FD',
       icon: <TbLine size={25} color='#A882FA'/>,
-      kernelList: null
+      kernel3x3List: null,
+      kernel5x5List: null,
+      kernel7x7List: null
     },
     {
       id: 'segmentation',
@@ -79,7 +134,9 @@ export const KernelMenu = () => {
       count: 10,
       color: '#EDE6FD',
       icon: <TbPuzzle size={25} color='#A882FA'/>,
-      kernelList: null
+      kernel3x3List: null,
+      kernel5x5List: null,
+      kernel7x7List: null
     },
     {
       id: 'enhancement',
@@ -87,7 +144,9 @@ export const KernelMenu = () => {
       count: 10,
       color: '#EDE6FD',
       icon: <BiTrendingUp size={25} color='#A882FA'/>,
-      kernelList: null
+      kernel3x3List: null,
+      kernel5x5List: null,
+      kernel7x7List: null
     },
     {
       id: 'special',
@@ -95,7 +154,9 @@ export const KernelMenu = () => {
       count: 10,
       color: '#E1EBFB',
       icon: <IoDiamondOutline size={25} color='#83B0F2'/>,
-      kernelList: null
+      kernel3x3List: null,
+      kernel5x5List: null,
+      kernel7x7List: null
     },
     {
       id: 'custom',
@@ -103,7 +164,9 @@ export const KernelMenu = () => {
       count: 10,
       color: '#E1EBFB',
       icon: <BiCustomize size={25} color='#83B0F2'/>,
-      kernelList: null
+      kernel3x3List: null,
+      kernel5x5List: null,
+      kernel7x7List: null
     }
   ]
 

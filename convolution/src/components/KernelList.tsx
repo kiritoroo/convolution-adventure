@@ -1,10 +1,13 @@
-import * as S from './KernelList.styled'
+import { useState } from 'react';
 import { IKernelData } from 'src/types'
 import { Variants } from "framer-motion";
 import { KernelCard } from './KernelCard';
+import * as S from './KernelList.styled'
 
 interface Props {
-  kernelList: IKernelData[] | null
+  kernel3x3List: IKernelData[] | null,
+  kernel5x5List: IKernelData[] | null
+  kernel7x7List: IKernelData[] | null
 }
 
 export const KernelList = (props: Props) => {
@@ -15,20 +18,28 @@ export const KernelList = (props: Props) => {
     exit: { opacity: 0, x: "-50%" },
   };
 
+  const listKernel = [props.kernel3x3List, props.kernel5x5List, props.kernel7x7List]
+  const [selectedTab, setSelectedTab] = useState(0)
+
   return (
     <>
-      <S.Container
+      <S.Container size={selectedTab}
         initial="hidden"
         animate="enter"
         exit="exit"
         variants={variants}>
-        <S.ListWrapper>
-          {props.kernelList?.map((kernelData, i) => (
-            <KernelCard
-            key={i}
-              kernelData={kernelData}/>
-          ))}
-        </S.ListWrapper>
+          <S.TabListWrapper>
+            <S.TabItem onClick={() => setSelectedTab(0)}>3x3</S.TabItem>
+            <S.TabItem onClick={() => setSelectedTab(1)}>5x5</S.TabItem>
+            <S.TabItem onClick={() => setSelectedTab(2)}>7x7</S.TabItem>
+          </S.TabListWrapper>
+          <S.ListWrapper>
+            {listKernel[selectedTab]?.map((kernelData, i) => (
+              <KernelCard
+              key={i}
+                kernelData={kernelData}/>
+            ))}
+          </S.ListWrapper>
         <S.GradientBottom/>
       </S.Container>
     </>

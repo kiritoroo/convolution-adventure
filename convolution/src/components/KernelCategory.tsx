@@ -33,7 +33,11 @@ export const KernelCategory = (props: Props) => {
           ) : null}
       </S.Flex1>
     </S.Container>
-    { props.isShow && <KernelList kernelList={props.categoryData.kernelList}/>}
+    { props.isShow && 
+      <KernelList
+        kernel3x3List={props.categoryData.kernel3x3List}
+        kernel5x5List={props.categoryData.kernel5x5List}
+        kernel7x7List={props.categoryData.kernel7x7List}/>}
     </>
   )
 }

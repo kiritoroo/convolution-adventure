@@ -5,11 +5,13 @@ export const NameWrapper = styled.div`
   padding-left: 10px;
   font-weight: 500;
   margin: 10px 0;
+  user-select: none;
 `
 
 export const MatrixWrapper = styled.div`
   background: #F9F9F9;
-  padding: 25px 25px;
+  padding: 25px 50px;
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
 `
 
 export const FlexMatrixHoz = styled.div`
@@ -32,13 +34,18 @@ export const FlexItem = styled.div`
   align-items: center;
   width: 40px;
   height: 40px;
-  background: #D9D9D9;
+  background: #E8E8E8;
   color: #9C70F9;
   font-weight: 500;
   border-radius: 2px;
+  user-select: none;
 `
 
 export const Container = styled.div`
   margin: 20px 20px;
   font-size: 12px;
+
+  &:hover ${MatrixWrapper} {
+    background: linear-gradient(to bottom, #FFFFFF 20%, #EDE6FD 100%);
+  }
 `
