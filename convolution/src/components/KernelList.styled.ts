@@ -14,6 +14,7 @@ export const Container = styled(motion.div)<{ size: number }>`
 
   display: flex;
   flex-direction: column;
+  box-shadow: rgba(168, 130, 250, 0.2) 0px 8px 24px;
 `
 
 export const TabListWrapper = styled.div`

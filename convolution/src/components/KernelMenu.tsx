@@ -7,10 +7,19 @@ import { IKernelsData } from '../types'
 import * as S from './KernelMenu.styled'
 import { Spin as Hamburger } from 'hamburger-react'
 import { KernelList } from './KernelList'
+import { Variants } from "framer-motion";
+
 
 export const KernelMenu = () => {
   const [minimum, setMinimum] = useState(true)
   const [selectedCategory, setSelectedCategory] = useState<IKernelsData | null>(null)
+
+  const trans = { duration: 2, ease: [0.23, 1, 0.32, 1], delay: 1 };
+  const variants: Variants = {
+    hidden: { opacity: 0 },
+    enter: { opacity: 1, transition: trans,},
+    exit: { opacity: 0, transition: trans },
+  };
 
   const kernelsData: IKernelsData[] = [
     {
@@ -151,7 +160,11 @@ export const KernelMenu = () => {
 
   return (
     <>
-      <S.Container>
+      <S.Container
+        initial="hidden"
+        animate="enter"
+        exit="exit"
+        variants={variants}>
         <Hamburger size={20} color={'#B6BABE'} onToggle={handleSetMinimum}/>
         { kernelsData.map((category) => (
           <KernelCategory

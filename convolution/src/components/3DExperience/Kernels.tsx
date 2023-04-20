@@ -1,8 +1,8 @@
 import { KernelBlock } from "./KernelBlock";
-import { Suspense, useContext, useEffect } from "react"
+import React, { Suspense, useContext, useEffect, useRef, forwardRef, useImperativeHandle, SetStateAction } from "react"
 import { KernelContext } from "src/App"
 import * as THREE from 'three'
-import { useThree } from '@react-three/fiber';
+import { useThree} from '@react-three/fiber';
 import gsap from 'gsap';
 import { Float } from '@react-three/drei'
 import { Text } from './Text'
@@ -19,7 +19,16 @@ function getMax(matrix: number[][]): number {
   return max;
 }
 
-export const Kernels = () => {
+interface ChildProps {
+  myRef: React.Dispatch<SetStateAction<ChildRef | undefined>>;
+
+}
+
+export interface ChildRef {
+  setPos: (pos: THREE.Vector3) => void;
+}
+
+export const Kernels = React.forwardRef<ChildRef, ChildProps>((props: ChildProps, ref) => {
   const kernelContext = useContext(KernelContext)
   const kernelInfo = kernelContext?.kernelInfo
 
@@ -31,6 +40,28 @@ export const Kernels = () => {
   const { camera } = useThree();
 
   const cameraDefaultPos = new THREE.Vector3(10, 5, 10)
+
+  const grref = useRef<any>()
+
+  // useEffect(() => {
+  //   // if (ref.current) {
+  //   //   setPos(new THREE.Vector3(0,2,0))
+  //   // }
+  //   // console.log(ref.current)
+  // }, [myRef])
+
+  useImperativeHandle(props.myRef, () => {
+    return {
+      setPos: setPosition
+    }
+  }, [])
+
+  const setPosition = (pos: THREE.Vector3): void => {
+    if (grref.current) {
+      grref.current.position.set(pos.x, pos.y, pos.z)
+    }
+    console.log('set position')
+  }
 
   useEffect(() => {
     gsap.globalTimeline.clear()
@@ -61,7 +92,7 @@ export const Kernels = () => {
   }, [kernelInfo])
 
   return (
-    <group>
+    <group ref={grref}>
       <Float floatIntensity={3} rotationIntensity={0} speed={1}>
         <group castShadow>
           { kernelInfo?.matrix.map((row: number[], i: number) => (
@@ -83,4 +114,4 @@ export const Kernels = () => {
       </Text> */}
     </group>
     )
-}
+})
