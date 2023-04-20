@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import * as THREE from 'three'
 
 export const NameWrapper = styled.div`
   border-left: solid 3px #9C70F9;
@@ -32,13 +33,14 @@ export const FlexMatrixVez = styled.div`
   gap: 3px;
 `
 
-export const FlexItem = styled.div`
+export const FlexItem = styled.div<{ threeColor: THREE.Color}>`
   display: flex;
   justify-content: center;
   align-items: center;
   width: 40px;
   height: 40px;
   background: #E8E8E8;
+  /* background: ${({ threeColor }) => `rgb(${threeColor.r * 255}, ${threeColor.g * 255}, ${threeColor.b * 255})`}; */
   color: #9C70F9;
   font-weight: 500;
   border-radius: 2px;

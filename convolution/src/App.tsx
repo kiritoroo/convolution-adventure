@@ -1,7 +1,9 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { Canvas3D } from "./components/3DExperience/Canvas3D";
 import { KernelMenu } from "./components/KernelMenu";
 import { IKernelData } from "./types";
+import { Overlay } from "@comp/2DExperience/Overlay";
+import Cursor from './addons/cursor'
 
 interface IKernelContext {
   kernelInfo: IKernelData,
@@ -11,6 +13,11 @@ interface IKernelContext {
 export const KernelContext = createContext<IKernelContext | null>(null)
 
 export default function App() {
+
+  useEffect(() => {
+    new Cursor()
+  }, [])
+
   const [currKernelInfo, setCurrKernelInfo] = useState<IKernelData>({
     id: 'gaussian3x3',
     name: 'Gaussian',
@@ -30,6 +37,7 @@ export default function App() {
       }}>
         <Canvas3D/>
         <KernelMenu/>
+        <Overlay/>
       </KernelContext.Provider>   
     </div>
   )

@@ -14,6 +14,8 @@ import { useEffect, useRef } from 'react'
 import { Bg } from './Bg'
 import { Rig } from './Rig'
 import { Ground } from './Ground'
+import { Selector } from './Selector'
+import { Text } from './Text'
 
 export const Canvas3D = () => {
 
@@ -26,9 +28,12 @@ export const Canvas3D = () => {
           <ambientLight />
           <directionalLight castShadow intensity={0.6} position={[0, 0, 10]} />
 
-          <Kernels/>
+          <Selector>
+            <Kernels/>
+          </Selector>
+          
           <Ground/>
-
+                
           <Grid/>
           <Env/>
           <Shadows/>

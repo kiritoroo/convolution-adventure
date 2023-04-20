@@ -1,10 +1,11 @@
 import { KernelBlock } from "./KernelBlock";
-import { useContext, useEffect } from "react"
+import { Suspense, useContext, useEffect } from "react"
 import { KernelContext } from "src/App"
 import * as THREE from 'three'
 import { useThree } from '@react-three/fiber';
 import gsap from 'gsap';
 import { Float } from '@react-three/drei'
+import { Text } from './Text'
 
 function getMax(matrix: number[][]): number {
   let max = -Infinity;
@@ -60,21 +61,26 @@ export const Kernels = () => {
   }, [kernelInfo])
 
   return (
-    <Float floatIntensity={3} rotationIntensity={0} speed={1}>
-      <group castShadow>
-        { kernelInfo?.matrix.map((row: number[], i: number) => (
-          row.map((value: number, j: number) => (
-            <KernelBlock
-              key={`${i}-${j}-${value}-${kernelInfo.size}`}
-              args={{ 
-                position: [kernelsPos.x+i, kernelsPos.y, kernelsPos.z+j],
-                rotation: [0,0,0]}}
-              value={value}
-              valMax={valMax}
-              delay={kernelInfo.size*i+j}/>
-          ))
-        )) }
-      </group>
-    </Float>
-  )
+    <group>
+      <Float floatIntensity={3} rotationIntensity={0} speed={1}>
+        <group castShadow>
+          { kernelInfo?.matrix.map((row: number[], i: number) => (
+            row.map((value: number, j: number) => (
+              <KernelBlock
+                key={`${i}-${j}-${value}-${kernelInfo.size}`}
+                args={{ 
+                  position: [kernelsPos.x+i, kernelsPos.y, kernelsPos.z+j],
+                  rotation: [0,0,0]}}
+                value={value}
+                valMax={valMax}
+                delay={kernelInfo.size*i+j}/>
+            ))
+          )) }
+        </group>
+      </Float>
+      {/* <Text rotation={[-Math.PI / 2, 0,  Math.PI/2]} position={[-6, -0.5, 4]}>
+        {kernelInfo?.name}
+      </Text> */}
+    </group>
+    )
 }

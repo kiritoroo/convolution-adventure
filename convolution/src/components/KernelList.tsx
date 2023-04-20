@@ -35,10 +35,10 @@ export const KernelList = (props: Props) => {
   const handleHide = () => {
     timeOutIds.push(setTimeout(() => {
       setIsShow(false)
-    }, 1000))
+    }, 500))
     timeOutIds.push(setTimeout(() => {
       props.setCategory(null)
-    }, 1500))
+    }, 1000))
   }
 
   const handleShow = () => {

@@ -8,7 +8,7 @@ export const Shadows = () => {
     <AccumulativeShadows
       temporal
       frames={100}
-      color={'#D1D6E2'}
+      color={'#d6aafc'}
       colorBlend={5}
       toneMapped={true}
       alphaTest={0.9}

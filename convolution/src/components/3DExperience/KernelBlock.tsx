@@ -54,7 +54,8 @@ export const KernelBlock = (props: Props) => {
       </Text>
       <mesh castShadow>
         <boxGeometry args={[0.9, 0.9, 0.9]} />
-        <meshStandardMaterial color={new THREE.Color((props.valMax - props.value/1.1)/props.valMax, (props.valMax - props.value)/props.valMax, 1)}/>
+        {/* <MeshTransmissionMaterial samples={16} resolution={512} anisotropy={1} thickness={0.1} roughness={0.4} toneMapped={true} /> */}
+        <meshStandardMaterial transparent={true} opacity={1} color={new THREE.Color((props.valMax - props.value/1.1)/props.valMax, (props.valMax - props.value)/props.valMax, 1)}/>
       </mesh>
     </animated.group>
   )
