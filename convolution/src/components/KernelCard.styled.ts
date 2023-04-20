@@ -8,9 +8,13 @@ export const NameWrapper = styled.div`
   user-select: none;
 `
 
-export const MatrixWrapper = styled.div`
-  background: #F9F9F9;
+export const MatrixWrapper = styled.div<{ isSelected: boolean }>`
   padding: 25px 50px;
+  background: ${(props) => {
+    return !props.isSelected
+      ? `#F9F9F9;`
+      : `linear-gradient(to bottom, #FFFFFF 20%, #EDE6FD 100%);`
+  }};
   transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
 `
 
@@ -46,6 +50,11 @@ export const Container = styled.div`
   font-size: 12px;
 
   &:hover ${MatrixWrapper} {
+    transform: scale(1.05);
     background: linear-gradient(to bottom, #FFFFFF 20%, #EDE6FD 100%);
+  }
+
+  &:active ${MatrixWrapper} {
+    transform: scale(0.95);
   }
 `

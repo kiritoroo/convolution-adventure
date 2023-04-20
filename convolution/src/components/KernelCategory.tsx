@@ -7,6 +7,7 @@ interface Props {
   categoryData: IKernelsData
   isMinimum: boolean
   isShow: boolean
+  setCategory: React.Dispatch<React.SetStateAction<IKernelsData  | null>>
   onClick: () => void
 }
 
@@ -35,6 +36,8 @@ export const KernelCategory = (props: Props) => {
     </S.Container>
     { props.isShow && 
       <KernelList
+        category={props.categoryData}
+        setCategory={props.setCategory}
         kernel3x3List={props.categoryData.kernel3x3List}
         kernel5x5List={props.categoryData.kernel5x5List}
         kernel7x7List={props.categoryData.kernel7x7List}/>}

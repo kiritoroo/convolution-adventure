@@ -21,6 +21,7 @@ export const KernelMenu = () => {
       icon: <BiFilterAlt size={25} color='#A882FA'/>,
       kernel3x3List: [
         {
+          id: 'gaussian3x3',
           name: 'Gaussian',
           size: 3,
           matrix: [
@@ -30,17 +31,19 @@ export const KernelMenu = () => {
           coef: 1/16
         },
         {
-          name: 'Gaussian',
+          id: 'sobel3x3',
+          name: 'Sobel Gx',
           size: 3,
           matrix: [
-            [1,2,1],
-            [2,4,2],
-            [1,2,1]],
+            [-1,0,1],
+            [-2,0,2],
+            [-1,0,1]],
           coef: 1/16
         }
       ],
       kernel5x5List: [
         {
+          id: 'gaussian5x5',
           name: 'Gaussian',
           size: 5,
           matrix: [
@@ -55,34 +58,7 @@ export const KernelMenu = () => {
       ],
       kernel7x7List: [
         {
-          name: 'Gaussian',
-          size: 7,
-          matrix: [
-            [0,0,1,2,1,0,0],
-            [0,3,13,22,13,3,0],
-            [1,13,59,97,59,13,1],
-            [2,22,97,159,97,22,2],
-            [1,13,59,97,59,13,1],
-            [0,3,13,22,13,3,0],
-            [0,0,1,2,1,0,0]
-          ],
-          coef: 1/1003
-        },
-        {
-          name: 'Gaussian',
-          size: 7,
-          matrix: [
-            [0,0,1,2,1,0,0],
-            [0,3,13,22,13,3,0],
-            [1,13,59,97,59,13,1],
-            [2,22,97,159,97,22,2],
-            [1,13,59,97,59,13,1],
-            [0,3,13,22,13,3,0],
-            [0,0,1,2,1,0,0]
-          ],
-          coef: 1/1003
-        },
-        {
+          id: 'gaussian7x7',
           name: 'Gaussian',
           size: 7,
           matrix: [
@@ -104,17 +80,7 @@ export const KernelMenu = () => {
       count: 5,
       color: '#EDE6FD',
       icon: <BiSun size={25} color='#A882FA'/>,
-      kernel3x3List: [
-        {
-          name: 'Sobel Horizontal',
-          size: 3,
-          matrix: [
-            [1,2,1],
-            [2,4,2],
-            [1,2,1]],
-          coef: 1/16
-        }
-      ],
+      kernel3x3List: null,
       kernel5x5List: null,
       kernel7x7List: null
     },
@@ -193,6 +159,7 @@ export const KernelMenu = () => {
             categoryData={category}
             isMinimum={minimum}
             isShow={selectedCategory?.id === category.id ?? false}
+            setCategory={setSelectedCategory}
             onClick={() => handleSelectKernel(category)}/>
         ))}
       </S.Container>

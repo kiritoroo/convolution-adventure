@@ -10,6 +10,7 @@ export interface IKernelsData {
 }
 
 export interface IKernelData {
+  id: string
   name: string
   size: number
   matrix: any
